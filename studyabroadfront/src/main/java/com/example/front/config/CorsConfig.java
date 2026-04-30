@@ -1,7 +1,5 @@
 package com.example.front.config;
 
-
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +23,7 @@ public class CorsConfig {
 	    config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 	    config.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
 	    config.setAllowCredentials(true); // 如果要傳遞 Cookie/Session，這行必須為 true
+
 
 
 	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
