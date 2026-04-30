@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學員註冊 | StudyAbroad Global</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!--    <link rel="stylesheet" href="../static/register.css">-->
+    <link rel="stylesheet" th:href="@{/register.css}">
+</head>
+
+<body>
+
+<div class="register-card" data-aos="zoom-in" data-aos-duration="800">
+    <div class="mb-3">
+        <a href="login.html" class="text-decoration-none text-muted back-link">
+            <i class="fa-solid fa-arrow-left me-1"></i> 返回登入
+        </a>
+    </div>
+
+    <div class="register-logo">
+        <i class="fa-solid fa-graduation-cap"></i> <b>STUDYABROAD</b>
+        <p class="text-muted fs-6 mt-1">請填寫以下資訊以建立您的學員檔案</p>
+    </div>
+
+    <div th:if="${msg}" class="alert"
+         th:classappend="' alert-' + ${msgType}">
+        <span th:text="${msg}"></span>
+    </div>
+
+    <form class="row g-2" action="/register" method="post">
+<!--    <form class="row g-2">-->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="text" class="form-control" id="nameCn" name="nameZh" placeholder="中文姓名" required>
+            <label for="nameCn">姓名</label>
+        </div>
+        <div class="col-md-6 form-floating mb-2">
+            <input type="text" class="form-control" id="nameEn" name="nameEn" placeholder="英文姓名" required>
+            <label for="nameEn">姓名 (英文姓名)</label>
+        </div>
+
+        <div class="col-md-6 form-floating mb-2">
+            <input type="date" class="form-control" id="birthday" name="birthday" required>
+            <label for="birthday">生日</label>
+        </div>
+        <div class="col-md-6 form-floating mb-2">
+            <select class="form-select" id="gender" name="gender" required>
+                <option value="" selected disabled>請選擇</option>
+<!--                <option value="male">男</option>-->
+<!--                <option value="female">女</option>-->
+<!--                <option value="other">其他</option>-->
+                <option value="男">男</option>
+                <option value="女">女</option>
+                <option value="其他">其他</option>
+            </select>
+            <label for="gender">性別</label>
+        </div>
+
+        <div class="col-md-6 form-floating mb-2">
+            <select class="form-select" id="nationality" name="country.id" required>
+
+                <option value="" selected disabled hidden>請選擇國籍</option>
+
+                <option th:each="c : ${countries}"
+                        th:value="${c.id}"
+                        th:text="${c.name}">
+                </option>
+
+<!--                <option th:each="c : ${countries}"-->
+<!--                        th:value="${c.name}"-->
+<!--                        th:text="${c.name}">-->
+<!--                </option>-->
+
+            </select>
+
+            <label for="nationality">國籍</label>
+        </div>
+<!--        <div class="col-md-6 form-floating mb-2">-->
+<!--            <select class="form-select" id="nationality" name="nationality" required>-->
+<!--                <option value="" selected disabled>請選擇國籍</option>-->
+<!--                <option value="Taiwan">台灣 (Taiwan)</option>-->
+<!--                <option value="Japan">日本 (Japan)</option>-->
+<!--                <option value="UK">英國 (United Kingdom)</option>-->
+<!--            </select>-->
+<!--            <label for="nationality">國籍</label>-->
+<!--        </div>-->
+
+
+        <div class="col-md-6 form-floating mb-2">
+            <input type="text" class="form-control" id="passport" name="passportNumber" placeholder="護照號碼" required>
+            <label for="passport">護照號碼</label>
+        </div>
+
+        <div class="col-md-6 form-floating mb-2">
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="聯絡電話" pattern="[0-9]{10}" required>
+            <label for="phone">聯絡電話 (手機號碼)</label>
+        </div>
+        <div class="col-md-6 form-floating mb-2">
+            <input type="email" class="form-control" id="email" name="email" placeholder="電子郵件" required>
+            <label for="email">電子郵件 (Email)</label>
+        </div>
+
+        <div class="col-md-6 form-floating mb-2">
+            <input type="password" class="form-control" id="password" name="password" placeholder="密碼" required>
+            <label for="password">設定密碼</label>
+        </div>
+        <div class="col-md-6 form-floating mb-2">
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="再次輸入密碼" required>
+            <label for="confirmPassword">再次輸入密碼</label>
+        </div>
+
+        <div class="col-md-6 form-floating mb-2">
+            <input type="text" class="form-control" id="emergencyName" name="iceContact" placeholder="緊急聯絡人" required>
+            <label for="emergencyName">緊急聯絡人姓名</label>
+        </div>
+        <div class="col-md-6 form-floating mb-2">
+            <input type="tel" class="form-control" id="emergencyPhone" name="icePhone" placeholder="緊急連絡人電話" required>
+            <label for="emergencyPhone">緊急連絡人電話</label>
+        </div>
+
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-register text-white">立即註冊學員帳號</button>
+        </div>
+
+        <div class="text-center mt-3">
+            <p class="text-muted small">註冊即代表您同意本站之 <a href="#"
+                                                                  class="text-primary fw-bold text-decoration-none">服務條款</a></p>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+</body>
+
+</html>
