@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡我們 | StudyAbroad Global</title>
+
+```
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+```
+
+</head>
+
+<body ng-controller="mainCtrl">
+
+```
+<!-- Navbar（保留） -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+            STUDY<span class="text-white-50">ABROAD</span>
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                <li class="nav-item"><a class="nav-link" href="courses.html">精選課程</a></li>
+                <li class="nav-item"><a class="nav-link active" href="login.html">學員登入</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Header（保留） -->
+<header class="text-center bg-light py-5" style="margin-top:70px;">
+    <div class="container">
+        <h1 class="fw-bold">讓我們助您一臂之力</h1>
+        <p class="text-muted">留下聯絡資訊，我們會盡快聯繫您</p>
+    </div>
+</header>
+
+<!-- 主內容 -->
+<main class="container mb-5">
+    <div class="row g-0">
+
+        <!-- 左側資訊（完全保留） -->
+        <div class="col-lg-4 bg-dark text-white p-4">
+            <h4 class="fw-bold mb-4">聯絡資訊</h4>
+
+            <div class="mb-3">📍 台北市信義區忠孝東路五段 123 號</div>
+            <div class="mb-3">📞 02-1234-5678</div>
+            <div class="mb-3">✉️ info@studyabroad.com</div>
+        </div>
+
+        <!-- 右側表單（已整合 API） -->
+        <div class="col-lg-8 p-4">
+
+            <p class="text-danger">{{errorMsg}}</p>
+
+            <form ng-submit="submitForm()">
+
+                <div class="mb-3">
+                    <label>姓名</label>
+                    <input type="text" class="form-control" ng-model="form.name">
+                    <small class="text-danger">{{errors.name}}</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>電話</label>
+                    <input type="text" class="form-control" ng-model="form.phone">
+                    <small class="text-danger">{{errors.phone}}</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="email" class="form-control" ng-model="form.email">
+                    <small class="text-danger">{{errors.email}}</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>國家</label>
+                    <select class="form-control" ng-model="form.countryId">
+                        <option value="">請選擇</option>
+                       
+                        <option value="2">美國</option>
+                        <option value="3">英國</option>
+                    </select>
+                    <small class="text-danger">{{errors.countryId}}</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>需求</label>
+                    <textarea class="form-control" ng-model="form.requirement"></textarea>
+                    <small class="text-danger">{{errors.requirement}}</small>
+                </div>
+                <button type="reset" class="btn btn-outline-secondary btn-clear">清除內容</button>
+                <button type="submit" class="btn btn-submit flex-fill">提交申請</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<!-- 成功 Modal -->
+<div class="modal fade" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center p-4">
+            <h3 class="text-success">提交成功！</h3>
+            <p>顧問將在 24 小時內聯絡您</p>
+            <button class="btn btn-primary" data-bs-dismiss="modal">關閉</button>
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init();
+
+    var app = angular.module("app", []);
+
+    app.controller("mainCtrl", function ($scope, $http) {
+
+        $scope.form = {};
+        $scope.errors = {};
+        $scope.errorMsg = "";
+
+        $scope.submitForm = function () {
+
+            $scope.errors = {};
+            $scope.errorMsg = "";
+
+            $http.post("http://localhost:8080/api/appointments", $scope.form)
+
+                .then(function (response) {
+
+                    if (response.data.success) {
+
+                        var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+                        myModal.show();
+
+                        $scope.form = {};
+
+                    } else {
+                        $scope.errorMsg = response.data.message;
+                        $scope.errors = response.data.data || {};
+                    }
+
+                }, function () {
+                    $scope.errorMsg = "無法連線後端（請確認 CORS / Security）";
+                });
+        };
+    });
+</script>
+```
+
+</body>
+</html>

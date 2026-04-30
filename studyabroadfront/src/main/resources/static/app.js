@@ -1,9 +1,9 @@
 // 建立一個 AngularJS 模組 (Module)，名稱必須與 HTML 中的 ng-app="nzeduApp" 一致
-var app = angular.module('nzeduApp', []);
+var courseapp = angular.module('nzeduApp', []);
 
 // 建立 Controller，名稱必須與 HTML 中的 ng-controller="CourseController" 一致
 // 這裡注入了 $scope (負責綁定 HTML 變數) 與 $http (負責呼叫後端 API)
-app.controller('CourseController', function($scope, $http) {
+courseapp.controller('CourseController', function($scope, $http) {
     
     // 1. 初始化變數
     $scope.courses = [];          
@@ -38,4 +38,11 @@ app.controller('CourseController', function($scope, $http) {
 
     // 3. 當網頁一載入時，自動執行一次抓取資料 (載入預設國家 1 的課程)
     $scope.getCourses();
+
+var loginapp = angular.module('myApp', []);
+
+loginapp.config(function($httpProvider) {
+    // ⭐ 讓 session cookie 能帶過去
+    $httpProvider.defaults.withCredentials = true;
+
 });

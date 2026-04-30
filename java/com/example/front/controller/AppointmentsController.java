@@ -21,7 +21,7 @@ import com.example.front.service.AppointmentsService;
 import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/appointments")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class AppointmentsController {
 
     @Autowired
