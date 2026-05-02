@@ -69,9 +69,10 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public String logout(HttpSession session) {
+    public Map<String, String> logout(HttpSession session) {
         session.invalidate();
-        return "logout success";
+        return Map.of("message", "logout success");
+    
     }
 
 }

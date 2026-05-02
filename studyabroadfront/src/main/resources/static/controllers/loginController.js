@@ -1,4 +1,4 @@
-app.controller('LoginController', function($scope, AuthService) {
+loginapp.controller('LoginController', function($scope, AuthService) {
 
     $scope.loginForm = {};
     $scope.message = "";
