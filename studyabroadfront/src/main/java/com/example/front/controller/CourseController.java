@@ -23,10 +23,10 @@ public class CourseController {
 	@Autowired
     private CourseRepository courseRepository;
 
-    @GetMapping
-    public List<Course> getCoursesByCountry(@RequestParam Integer countryId) {
-        return courseRepository.findByCountryId(countryId);
-    }
+	@GetMapping("/list")
+	public List<Course> getAllCourses() {
+	    return courseRepository.findAll();
+	}
 
     @GetMapping("{id}/image")
     public ResponseEntity<byte[]> getCourseImage(@PathVariable Integer id){

@@ -19,8 +19,8 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- 你的 CSS（Thymeleaf 正確寫法） -->
-    <link rel="stylesheet" th:href="@{/login.css}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="login.css">
     
     <style>
     :root {
@@ -175,7 +175,7 @@ function login(event) {
         document.getElementById("msg").innerText = "登入成功：" + data.email;
 
         // 👉 導頁
-        window.location.href = "/homelogin.html";
+        window.location.href = "index.html";
 
     })
     .catch(err => {

@@ -21,20 +21,28 @@
 
 <body ng-controller="CourseController">
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fa-solid fa-graduation-cap me-2 text-accent"></i>STUDY<span
-                    class="text-white-50">ABROAD</span>
+                <i class="fa-solid fa-graduation-cap me-2 text-accent"></i>STUDY<span class="text-white-50">ABROAD</span>
             </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="fa-solid fa-bars text-white"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
                     <li class="nav-item"><a class="nav-link active" href="courses.html">精選課程</a></li>
                     <li class="nav-item"><a class="nav-link" href="contactus.html">聯絡顧問</a></li>
-                    <li class="nav-item mt-2 mt-lg-0">
-                        <a class="btn btn-login ms-lg-3" href="login.html">學員登入 <i
-                                class="fa-solid fa-arrow-right-to-bracket ms-1"></i></a>
+                    <li class="nav-item"><a class="nav-link" href="register.html">註冊學員</a></li>
+                    
+                    <li class="nav-item mt-2 mt-lg-0" ng-if="!user">
+                        <a class="btn btn-login ms-lg-3" href="login.html">學員登入 <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i></a>
+                    </li>
+                    <li class="nav-item mt-2 mt-lg-0" ng-if="user">
+                        <a class="btn btn-login ms-lg-3 text-white bg-accent border-0" href="#" ng-click="logout()">
+                            登出 ({{ user.nameZh || user.name }}) <i class="fa-solid fa-sign-out-alt ms-1"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
