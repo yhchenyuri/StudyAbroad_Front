@@ -11,6 +11,17 @@ app.config(function($httpProvider) {
 // 3. 建立 CourseController
 app.controller('CourseController', function($scope, $http) {
     
+	// ⭐ 加這行：從 localStorage 取回登入狀態
+	$scope.user = JSON.parse(localStorage.getItem('user'));
+	
+
+	// 登出
+	$scope.logout = function() {
+	    localStorage.removeItem('user');
+		//$scope.user = null;
+	    window.location.href = "index.html";
+	};
+	
     // 初始化變數
     $scope.courses = [];          
     $scope.selectedCountryId = ""; // 預設留空，讓它一開始顯示全部

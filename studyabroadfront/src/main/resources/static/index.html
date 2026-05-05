@@ -86,8 +86,9 @@
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
                     <li class="nav-item"><a class="nav-link" href="courses.html">精選課程</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contactus.html">聯絡顧問</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html">註冊學員</a></li>
+                    <li class="nav-item" ng-if="!user"><a class="nav-link" href="contactus.html">聯絡顧問</a></li>                    
+                    <li class="nav-item" ng-if="!user"><a class="nav-link" href="register.html">註冊學員</a></li>				
+   					<li class="nav-item" ng-if="user"><a class="nav-link" href="student_dashboard.html">學員資料</a></li>
                     
                     <li class="nav-item mt-2 mt-lg-0" ng-if="!user">
                         <a class="btn btn-login ms-lg-3" href="login.html">學員登入 <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i></a>
@@ -235,7 +236,7 @@
             $scope.logout = function() {
                 $http.post('http://localhost:8080/api/auth/logout')
                     .then(function(res) {
-                        $window.location.href = "login.html";
+                        $window.location.href = "/index.html";
                     });
             };
         });

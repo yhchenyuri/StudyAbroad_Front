@@ -171,6 +171,8 @@ function login(event) {
     .then(data => {
 
         console.log("登入成功:", data);
+		//把 user 存起來
+        localStorage.setItem('user', JSON.stringify(data.user));
 
         document.getElementById("msg").innerText = "登入成功：" + data.email;
 

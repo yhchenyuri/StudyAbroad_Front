@@ -33,8 +33,9 @@
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
                     <li class="nav-item"><a class="nav-link active" href="courses.html">精選課程</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contactus.html">聯絡顧問</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html">註冊學員</a></li>
+                    <li class="nav-item" ng-if="!user"><a class="nav-link" href="contactus.html">聯絡顧問</a></li>                  
+                    <li class="nav-item" ng-if="!user"><a class="nav-link" href="register.html">註冊學員</a></li>
+					<li class="nav-item" ng-if="user"><a class="nav-link" href="student_dashboard.html">學員資料</a></li>
                     
                     <li class="nav-item mt-2 mt-lg-0" ng-if="!user">
                         <a class="btn btn-login ms-lg-3" href="login.html">學員登入 <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i></a>
@@ -58,8 +59,7 @@
 
     <main class="container mb-5">
         <div class="filter-bar row align-items-center g-3 mx-1" data-aos="fade-up" data-aos-delay="200">
-            <div class="col-md-4">
-                <select class="form-select border-0 bg-light" ng-model="selectedCountryId" ng-change="getCourses()">
+            <div class="col-md-4"><select class="form-select border-0 bg-light" ng-model="selectedCountryId" ng-change="getCourses()">
                     <option value="" disabled>選擇留學國家</option>
                     <option ng-value="3">英國 (UK)</option>
                     <option ng-value="2">美國 (USA)</option>
