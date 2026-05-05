@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" ng-app="myApp">
 
 <head>
     <meta charset="UTF-8">
@@ -10,208 +10,93 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-    :root {
-    --primary-color: #0d47a1;
-    --accent-color: #ff9800;
-    --text-dark: #212121;
-    --text-light: #f5f5f5;
-}
-
-body {
-    font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
-    background-color: #ffffff;
-    color: var(--text-dark);
-    overflow-x: hidden;
-}
-
-h1,
-h2,
-h3,
-.navbar-brand {
-    font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
-    font-weight: 700;
-}
-
-.section-padding {
-    padding: 100px 0;
-}
-
-/* Navbar */
-.navbar {
-    transition: all 0.4s ease;
-    background-color: rgba(13, 71, 161, 0.95) !important;
-    backdrop-filter: blur(10px);
-}
-
-.navbar-brand {
-    font-size: 1.5rem;
-    color: #fff !important;
-}
-
-.nav-link {
-    color: rgba(255, 255, 255, 0.8) !important;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.nav-link:hover,
-.nav-link.active {
-    color: var(--accent-color) !important;
-}
-
-.btn-login {
-    border: 2px solid var(--accent-color);
-    color: var(--accent-color) !important;
-    border-radius: 50px;
-    padding: 6px 20px;
-    transition: all 0.3s;
-}
-
-.btn-login:hover {
-    background-color: var(--accent-color);
-    color: #fff !important;
-}
-
-/* Carousel */
-.hero-carousel .carousel-item {
-    height: 100vh;
-    min-height: 500px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-.carousel-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-}
-
-.carousel-caption {
-    z-index: 10;
-    bottom: 20%;
-    text-align: left;
-}
-
-.carousel-caption h1 {
-    font-size: 3.5rem;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-caption p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-}
-
-/* Cards */
-.card-courses {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    overflow: hidden;
-}
-
-.card-courses:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(13, 71, 161, 0.15);
-}
-
-.card-courses .card-img-top {
-    height: 220px;
-    object-fit: cover;
-}
-
-.card-courses .card-title {
-    color: var(--primary-color);
-    font-weight: 700;
-}
-
-.btn-theme {
-    background-color: var(--primary-color);
-    color: #fff;
-    border-radius: 50px;
-    padding: 8px 25px;
-    border: none;
-    transition: 0.3s;
-}
-
-.btn-theme:hover {
-    background-color: #093170;
-    color: #fff;
-    transform: scale(1.05);
-}
-
-.bg-light-section {
-    background-color: #f8f9fa;
-}
-
-.feature-icon {
-    width: 80px;
-    height: 80px;
-    background-color: rgba(13, 71, 161, 0.1);
-    color: var(--primary-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-    .carousel-caption h1 {
-        font-size: 2.2rem;
-    }
-
-    .carousel-caption {
-        text-align: center;
-        bottom: 15%;
-    }
-
-    .carousel-caption p {
-        margin: 10px auto;
-    }
-
-    .section-padding {
-        padding: 60px 0;
-    }
-}
-    </style>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
 
+    <style>
+        /* 🌟 隱形斗篷：在 Angular 準備好之前，隱藏所有帶有 {{ }} 的元素 */
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+
+        :root {
+            --primary-color: #0d47a1;
+            --accent-color: #ff9800;
+            --text-dark: #212121;
+            --text-light: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .navbar-brand { font-family: 'Montserrat', 'Noto Sans TC', sans-serif; font-weight: 700; }
+        .section-padding { padding: 100px 0; }
+
+        /* Navbar */
+        .navbar { transition: all 0.4s ease; background-color: rgba(13, 71, 161, 0.95) !important; backdrop-filter: blur(10px); }
+        .navbar-brand { font-size: 1.5rem; color: #fff !important; }
+        .nav-link { color: rgba(255, 255, 255, 0.8) !important; font-weight: 500; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-color) !important; }
+        .btn-login { border: 2px solid var(--accent-color); color: var(--accent-color) !important; border-radius: 50px; padding: 6px 20px; transition: all 0.3s; }
+        .btn-login:hover { background-color: var(--accent-color); color: #fff !important; }
+
+        /* Carousel */
+        .hero-carousel .carousel-item { height: 100vh; min-height: 500px; background-size: cover; background-position: center; position: relative; }
+        .carousel-item::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); }
+        .carousel-caption { z-index: 10; bottom: 20%; text-align: left; }
+        .carousel-caption h1 { font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); }
+        .carousel-caption p { font-size: 1.2rem; max-width: 600px; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); }
+
+        /* Cards */
+        .card-courses { border: none; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; overflow: hidden; }
+        .card-courses:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(13, 71, 161, 0.15); }
+        .card-courses .card-img-top { height: 220px; object-fit: cover; }
+        .card-courses .card-title { color: var(--primary-color); font-weight: 700; }
+        .btn-theme { background-color: var(--primary-color); color: #fff; border-radius: 50px; padding: 8px 25px; border: none; transition: 0.3s; }
+        .btn-theme:hover { background-color: #093170; color: #fff; transform: scale(1.05); }
+        .bg-light-section { background-color: #f8f9fa; }
+        .feature-icon { width: 80px; height: 80px; background-color: rgba(13, 71, 161, 0.1); color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .carousel-caption h1 { font-size: 2.2rem; }
+            .carousel-caption { text-align: center; bottom: 15%; }
+            .carousel-caption p { margin: 10px auto; }
+            .section-padding { padding: 60px 0; }
+        }
+    </style>
 </head>
 
-<body>
+<body ng-controller="HomeController" ng-cloak>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fa-solid fa-graduation-cap me-2 text-accent"></i>STUDY<span
-                    class="text-white-50">ABROAD</span>
+                <i class="fa-solid fa-graduation-cap me-2 text-accent"></i>STUDY<span class="text-white-50">ABROAD</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="fa-solid fa-bars text-white"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link active" href="/">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
                     <li class="nav-item"><a class="nav-link" href="courses.html">精選課程</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contactus.html">聯絡顧問</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html">註冊學員</a></li>
-                    <li class="nav-item mt-2 mt-lg-0">
-                        <a class="btn btn-login ms-lg-3" href="login.html">學員登入 <i
-                                class="fa-solid fa-arrow-right-to-bracket ms-1"></i></a>
+                    <li class="nav-item" ng-if="!user"><a class="nav-link" href="contactus.html">聯絡顧問</a></li>                    
+                    <li class="nav-item" ng-if="!user"><a class="nav-link" href="register.html">註冊學員</a></li>				
+   					<li class="nav-item" ng-if="user"><a class="nav-link" href="student_dashboard.html">學員資料</a></li>
+                    
+                    <li class="nav-item mt-2 mt-lg-0" ng-if="!user">
+                        <a class="btn btn-login ms-lg-3" href="login.html">學員登入 <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i></a>
+                    </li>
+                    <li class="nav-item mt-2 mt-lg-0" ng-if="user">
+                        <a class="btn btn-login ms-lg-3 text-white bg-accent border-0" href="#" ng-click="logout()">
+                            登出 ({{ user.nameZh || user.name }}) <i class="fa-solid fa-sign-out-alt ms-1"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -219,62 +104,19 @@ h3,
     </nav>
 
     <div id="homeCarousel" class="carousel slide hero-carousel carousel-fade" data-bs-ride="carousel">
-
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active"
-                aria-current="true"></button>
-            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-
         <div class="carousel-inner">
-            <div class="carousel-item active"
-                style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1920&h=1080&auto=format&fit=crop');">
+            <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1920&h=1080&auto=format&fit=crop');">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-lg-8 carousel-caption text-start">
                             <h1 data-aos="fade-up">跨越國界，<br>遇見更好的自己。</h1>
-                            <p data-aos="fade-up" data-aos-delay="200">精選全球頂尖名校課程，從語言提升到學位申請，我們提供最完整的支持與服務。</p>
-                            <a href="contactus.html" class="btn btn-theme btn-lg mt-3" data-aos="fade-up"
-                                data-aos-delay="400">免費諮詢</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item"
-                style="background-image: url('https://images.unsplash.com/photo-1523050853063-bd8012fbb761?q=80&w=1920&h=1080&auto=format&fit=crop');">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-lg-8 carousel-caption text-start">
-                            <h1>探索世界，<br>定義你的未來。</h1>
-                            <p>專業顧問團隊，一對一量身打造專屬留學計畫。我們陪你走過申請的每一步，開啟國際視野。</p>
-                            <a href="courses.html" class="btn btn-theme btn-lg mt-3">立即開始</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item"
-                style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1920&h=1080&auto=format&fit=crop');">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-lg-8 carousel-caption text-start">
-                            <h1>專業代辦服務，<br>讓夢想更近一步。</h1>
-                            <p>我們提供最精準的學校落點分析，確保每一份申請都能發揮最大的成功率。</p>
-                            <a href="contactus.html" class="btn btn-theme btn-lg mt-3">聯絡顧問</a>
+                            <p data-aos="fade-up" data-aos-delay="200">精選全球頂尖名校課程，從大學到博士學位申請，我們提供最完整的支持與服務。</p>
+                            <a href="contactus.html" class="btn btn-theme btn-lg mt-3" data-aos="fade-up" data-aos-delay="400">免費諮詢</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
     </div>
 
     <section class="section-padding bg-light-section">
@@ -290,21 +132,18 @@ h3,
                     <div class="bg-white p-5 rounded-4 shadow-sm h-100 transition-hover">
                         <div class="feature-icon mx-auto"><i class="fa-solid fa-user-tie"></i></div>
                         <h5>專業資深顧問</h5>
-                        <p class="text-muted small mb-0">擁有多年經驗，精準分析你的優勢，提升錄取率。</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
                     <div class="bg-white p-5 rounded-4 shadow-sm h-100 transition-hover">
                         <div class="feature-icon mx-auto"><i class="fa-solid fa-handshake"></i></div>
                         <h5>全程陪伴服務</h5>
-                        <p class="text-muted small mb-0">從選校、文書、簽證到行前導覽，給予最暖心的支持。</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="flip-left" data-aos-delay="500">
                     <div class="bg-white p-5 rounded-4 shadow-sm h-100 transition-hover">
                         <div class="feature-icon mx-auto"><i class="fa-solid fa-award"></i></div>
                         <h5>高錄取成功率</h5>
-                        <p class="text-muted small mb-0">過往協助數千名學子進入理想名校，口碑值得信賴。</p>
                     </div>
                 </div>
             </div>
@@ -321,50 +160,19 @@ h3,
             </div>
 
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" ng-repeat="course in hotCourses">
                     <div class="card h-100 card-courses">
-                        <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=400&h=250&auto=format&fit=crop"
-                            class="card-img-top" alt="課程">
+                        <img ng-src="http://localhost:8080/api/courses/{{course.id}}/image" class="card-img-top" alt="課程圖片">
                         <div class="card-body">
-                            <span class="badge bg-danger mb-2">HOT</span>
-                            <h5 class="card-title">倫敦大學政治經濟學院夏令營</h5>
-                            <p class="card-text text-muted small">在頂尖名校體驗高強度的學術氛圍，結交全球精英。</p>
+                            <span class="badge bg-danger mb-2" ng-if="$index === 0">HOT 熱門</span>
+                            <span class="badge bg-danger mb-2" ng-if="$index === 1">HOT 熱門</span>
+                            <span class="badge bg-info text-dark mb-2" ng-if="$index === 2">最新上架</span>
+                            
+                            <h5 class="card-title">{{ course.courseName }}</h5>
+                            <p class="card-text text-muted small">{{ course.remarks || '深入當地文化，體驗最道地的留學生活與高品質學術指導。' }}</p>
+                            
                             <div class="d-flex justify-content-between align-items-center mt-4">
-                                <span class="text-primary fw-bold">詳情請洽顧問</span>
-                                <a href="courses.html" class="btn btn-theme btn-sm">查看 <i
-                                        class="fa-solid fa-chevron-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card h-100 card-courses">
-                        <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=400&h=250&auto=format&fit=crop"
-                            class="card-img-top" alt="課程">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">文化體驗</span>
-                            <h5 class="card-title">京都職人精神與日本語研修</h5>
-                            <p class="card-text text-muted small">深入古都，學習正統日語，並親身體驗職人精神。</p>
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <span class="text-primary fw-bold">NT$ 45,000 up</span>
-                                <a href="courses.html" class="btn btn-theme btn-sm">查看 <i
-                                        class="fa-solid fa-chevron-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="card h-100 card-courses">
-                        <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=400&h=250&auto=format&fit=crop"
-                            class="card-img-top" alt="課程">
-                        <div class="card-body">
-                            <span class="badge bg-info text-dark mb-2">實習機會</span>
-                            <h5 class="card-title">矽谷科技名企實習與創業營</h5>
-                            <p class="card-text text-muted small">近距離觀察世界頂尖科技公司，開啟你的職涯第一步。</p>
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <span class="text-primary fw-bold">詳情請洽顧問</span>
-                                <a href="courses.html" class="btn btn-theme btn-sm">查看 <i
-                                        class="fa-solid fa-chevron-right ms-1"></i></a>
+                                <span class="text-primary fw-bold">NT$ {{ course.price | number:0 }}</span>
                             </div>
                         </div>
                     </div>
@@ -382,11 +190,6 @@ h3,
     <footer class="bg-dark text-white-50 text-center py-5 mt-5">
         <div class="container">
             <h4 class="text-white fw-bold mb-3">STUDYABROAD Global</h4>
-            <div class="mb-4">
-                <a href="#" class="text-white-50 mx-2 fs-5"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" class="text-white-50 mx-2 fs-5"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="text-white-50 mx-2 fs-5"><i class="fa-brands fa-line"></i></a>
-            </div>
             <p class="mb-0 small">© 2026 StudyAbroad 留學領航專家. 版權所有</p>
         </div>
     </footer>
@@ -395,35 +198,48 @@ h3,
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-    AOS.init();
+        // 🌟 1. 先註冊 AngularJS，保證它不會被別人中斷
+        var app = angular.module('myApp', []);
 
-    var app= angular.module('myApp')
-.controller('HomeController', function($scope, AuthService) {
-
-    $scope.user = null;
-    $scope.message = "";
-
-    // 🔥 get current user
-    AuthService.getCurrentUser()
-        .then(function(res) {
-            $scope.user = res.data;
-        })
-        .catch(function(err) {
-            $scope.message = "Please login first";
-            console.log("Not logged in", err);
+        app.config(function($httpProvider) {
+            $httpProvider.defaults.withCredentials = true;
         });
 
-    // 🔥 logout
-    $scope.logout = function() {
-        AuthService.logout()
-            .then(function(res) {
-                console.log(res.data.message);
-                window.location.href = "/login.html";
-            });
-    };
+        app.controller('HomeController', function($scope, $http, $window, $timeout) {
+            $scope.user = null;
+            $scope.hotCourses = [];
 
-});
+            // 抓登入狀態
+            $http.get('http://localhost:8080/api/auth/me')
+                .then(function(res) {
+                    $scope.user = res.data;
+                }).catch(function(err) {});
+
+            // 抓推薦課程
+            $http.get('http://localhost:8080/api/courses/list')
+                .then(function(res) {
+                    var activeCourses = res.data.filter(function(c) { return c.isActive === true; });
+                    $scope.hotCourses = activeCourses.slice(0, 3);
+                    
+                    // 🌟 2. 等資料都綁定到畫面上後，再啟動 AOS 動畫 (最安全的做法)
+                    $timeout(function() {
+                        if (typeof AOS !== 'undefined') {
+                            AOS.init({ duration: 800, once: true });
+                        }
+                    }, 100);
+                })
+                .catch(function(err) {
+                    console.error("無法載入推薦課程:", err);
+                });
+
+            // 登出
+            $scope.logout = function() {
+                $http.post('http://localhost:8080/api/auth/logout')
+                    .then(function(res) {
+                        $window.location.href = "/index.html";
+                    });
+            };
+        });
     </script>
 </body>
-
 </html>

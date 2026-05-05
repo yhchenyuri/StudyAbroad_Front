@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<!--<html lang="zh-TW">-->
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../static/student_dashboard.css">
+    <link rel="stylesheet" th:href="@{/student_dashboard.css}">
 </head>
 
 <body>
@@ -28,7 +29,8 @@
                     <li class="nav-item dropdown ms-lg-3">
                         <a class="nav-link dropdown-toggle btn-user-profile px-3" href="#" id="userDropdown"
                             role="button" data-bs-toggle="dropdown">
-                            <i class="fa-solid fa-circle-user me-2"></i>黃詩雲 Sharon
+                            <span th:text="${student.nameZh}"></span>
+<!--                            <i class="fa-solid fa-circle-user me-2"></i>黃詩雲 Sharon-->
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
                             <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-gear me-2"></i>帳號設定</a>
@@ -56,25 +58,28 @@
                         <div class="avatar-placeholder mx-auto mb-3">
                             <i class="fa-solid fa-user-graduate"></i>
                         </div>
-                        <h4 class="fw-bold mb-1">黃詩雲</h4>
+<!--                        <h4 class="fw-bold mb-1">黃詩雲</h4>-->
+                        <h4 class="fw-bold mb-1" th:text="${student.nameZh}"></h4>
                         <span class="badge bg-primary-subtle text-primary rounded-pill px-3">正式學員</span>
                     </div>
                     <hr>
                     <div class="profile-info mt-3">
                         <div class="mb-3">
                             <label class="text-muted small d-block">護照號碼 Passport No.</label>
-                            <span class="fw-bold">358XXXX221</span>
+                            <span class="fw-bold" th:text="${student.passportNumber}"></span>
                         </div>
                         <div class="mb-3">
                             <label class="text-muted small d-block">電子郵件 Email</label>
-                            <span class="fw-bold">sy.huang.9511@gmail.com</span>
+                            <span class="fw-bold" th:text="${student.email}"></span>
+
                         </div>
                         <div class="mb-3">
                             <label class="text-muted small d-block">註冊日期 Registered On</label>
-                            <span class="fw-bold">2026 / 01 / 15</span>
+                            <span class="fw-bold" th:text="${#temporals.format(student.createdAt, 'yyyy/MM/dd HH:mm')}"></span>
+
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary w-100 rounded-pill mt-auto">編輯個人資料</button>
+<!--                    <button class="btn btn-outline-primary w-100 rounded-pill mt-auto">編輯個人資料</button>-->
                 </div>
             </div>
 
@@ -83,13 +88,13 @@
                     <div class="col-md-6">
                         <div class="card stat-box border-0 shadow-sm p-3 text-center">
                             <h6 class="text-muted small mb-1">已購買課程</h6>
-                            <h3 class="fw-bold text-primary mb-0">02</h3>
+                            <h3 class="fw-bold text-primary mb-0"><span th:text="${courseOrdersList.size()}"></span></h3>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card stat-box border-0 shadow-sm p-3 text-center">
                             <h6 class="text-muted small mb-1">預約諮詢</h6>
-                            <h3 class="fw-bold text-accent mb-0">01</h3>
+                            <h3 class="fw-bold text-accent mb-0"><span th:text="${appointmentsList.size()}"></span></h3>
                         </div>
                     </div>
                 </div>
@@ -103,38 +108,34 @@
                                     <th>課程名稱</th>
                                     <th>遊學時間 (Duration)</th>
                                     <th>狀態</th>
-                                    <th>操作</th>
+<!--                                    <th>操作</th>-->
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="fw-bold">倫敦大學政經學院夏令營</div>
-                                        <small class="text-muted">UK-LSE-2026</small>
-                                    </td>
-                                    <td>
-                                        <span class="text-dark">2026/07/15 - 08/20</span>
-                                        <br><small class="text-muted">共 37 天</small>
-                                    </td>
-                                    <td><span
-                                            class="badge bg-success-subtle text-success border border-success px-3">已確認</span>
-                                    </td>
-                                    <td><a href="#" class="btn btn-sm btn-light rounded-pill">查看行前</a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="fw-bold">京都職人文化研修</div>
-                                        <small class="text-muted">JP-KY-2026</small>
-                                    </td>
-                                    <td>
-                                        <span class="text-dark">2026/09/01 - 09/14</span>
-                                        <br><small class="text-muted">共 14 天</small>
-                                    </td>
-                                    <td><span
-                                            class="badge bg-warning-subtle text-warning border border-warning px-3">處理中</span>
-                                    </td>
-                                    <td><a href="#" class="btn btn-sm btn-light rounded-pill">付款詳情</a></td>
-                                </tr>
+                            <tr th:each="courseOrder : ${courseOrdersList}">
+                                <td>
+                                    <div class="fw-bold" th:text="${courseOrder.courseName}"></div>
+<!--                                    <small class="text-muted">UK-LSE-2026</small>-->
+                                </td>
+                                <td>
+                                    <span class="text-dark"
+                                          th:text="${#temporals.format(courseOrder.courseStartDate, 'yyyy/MM/dd')}
+                                          + ' - ' +
+                                          ${#temporals.format(courseOrder.courseEndDate, 'yyyy/MM/dd')}">
+                                    </span>
+                                    <br>
+                                    <small class="text-muted"
+                                           th:text="${courseOrder.durationDays + '天'}">
+                                    </small>
+                                </td>
+                                <td>
+                                    <span th:class="'badge px-3 bg-' + ${courseOrder.orderStatus.color} + '-subtle text-' + ${courseOrder.orderStatus.color} + ' border border-' + ${courseOrder.orderStatus.color}"
+                                          th:text="${courseOrder.orderStatus.label}">
+                                    </span>
+                                </td>
+<!--                                <td><a href="#" class="btn btn-sm btn-light rounded-pill">查看行前</a></td>-->
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
