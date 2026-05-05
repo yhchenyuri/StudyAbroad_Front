@@ -1,0 +1,140 @@
+:root {
+    --primary-color: #0d47a1;
+    --accent-color: #ff9800;
+    --bg-light: #f4f7f9;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: var(--bg-light);
+}
+
+/* --- Navbar --- */
+.navbar {
+    background-color: var(--primary-color) !important;
+    padding: 10px 0;
+}
+
+/* --- Page Header --- */
+.page-banner {
+    background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(13, 71, 161, 0.8)),
+        url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0 60px;
+    color: white;
+    text-align: center;
+}
+
+/* --- Course Filter Bar (提升專業感) --- */
+.filter-bar {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-top: -40px;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Course Cards --- */
+.course-item {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+}
+
+.course-item:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(13, 71, 161, 0.12);
+}
+
+.img-container {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.course-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.course-item:hover .course-img {
+    transform: scale(1.1);
+}
+
+.price-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.course-info-list {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.course-info-list li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.course-info-list i {
+    width: 25px;
+    color: var(--primary-color);
+}
+
+.btn-enroll {
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50px;
+    width: 100%;
+    padding: 10px;
+    font-weight: 500;
+    transition: 0.3s;
+    border: none;
+}
+
+.btn-enroll:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: scale(1.02);
+}
+
+footer {
+    background: #212121;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 40px 0;
+}
+
+.btn-login {
+    border: 2px solid var(--accent-color) !important;
+    color: var(--accent-color) !important;
+    border-radius: 50px !important;
+    padding: 6px 20px !important;
+    transition: all 0.3s ease !important;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-login:hover {
+    background-color: var(--accent-color) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    /* 輕微浮起感 */
+}

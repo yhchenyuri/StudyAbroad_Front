@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-TW" ng-app="registerApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學員註冊 | StudyAbroad Global</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- 外部 JS（🔥重點） -->
+    <script src="/register.js"></script>
+
+    <link rel="stylesheet" href="/register.css">
+</head>
+
+<body ng-controller="RegisterController">
+
+<div class="register-card" data-aos="zoom-in" data-aos-duration="800">
+
+    <!-- 返回 -->
+    <div class="mb-3">
+        <a href="login.html" class="text-decoration-none text-muted back-link">
+            <i class="fa-solid fa-arrow-left me-1"></i> 返回登入
+        </a>
+    </div>
+
+    <!-- 標題 -->
+    <div class="register-logo">
+        <i class="fa-solid fa-graduation-cap"></i> <b>STUDYABROAD</b>
+        <p class="text-muted fs-6 mt-1">請填寫以下資訊以建立您的學員檔案</p>
+    </div>
+
+    <!-- 訊息 -->
+    <div ng-if="msg" class="alert alert-{{msgType}}">
+        {{msg}}
+    </div>
+
+    <!-- 表單 -->
+    <form class="row g-2" ng-submit="submitForm()">
+
+        <!-- 中文姓名 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="text" class="form-control" ng-model="form.nameZh" required>
+            <label>姓名</label>
+        </div>
+
+        <!-- 英文姓名 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="text" class="form-control" ng-model="form.nameEn" required>
+            <label>姓名 (英文姓名)</label>
+        </div>
+
+        <!-- 生日 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="date" class="form-control" ng-model="form.birthday" required>
+            <label>生日</label>
+        </div>
+
+        <!-- 性別 -->
+        <div class="col-md-6 form-floating mb-2">
+            <select class="form-select" ng-model="form.gender" required>
+                <option value="" disabled selected>請選擇</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+                <option value="其他">其他</option>
+            </select>
+            <label>性別</label>
+        </div>
+
+        <!-- 國籍 -->
+        <div class="col-md-6 form-floating mb-2">
+            <select class="form-select" ng-model="form.countryId" required>
+                <option value="" disabled selected>請選擇國籍</option>
+                <option ng-repeat="c in countries" value="{{c.id}}">
+                    {{c.name}}
+                </option>
+            </select>
+            <label>國籍</label>
+        </div>
+
+        <!-- 護照 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="text" class="form-control" ng-model="form.passportNumber" required>
+            <label>護照號碼</label>
+        </div>
+
+        <!-- 電話 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="tel" class="form-control" ng-model="form.phone" required>
+            <label>聯絡電話 (手機號碼)</label>
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="email" class="form-control" ng-model="form.email" required>
+            <label>電子郵件 (Email)</label>
+        </div>
+
+        <!-- 密碼 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="password" class="form-control" ng-model="form.password" required>
+            <label>設定密碼</label>
+        </div>
+
+        <!-- 確認密碼 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="password" class="form-control" ng-model="form.confirmPassword" required>
+            <label>再次輸入密碼</label>
+        </div>
+
+        <!-- 緊急聯絡人 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="text" class="form-control" ng-model="form.iceContact" required>
+            <label>緊急聯絡人姓名</label>
+        </div>
+
+        <!-- 緊急電話 -->
+        <div class="col-md-6 form-floating mb-2">
+            <input type="tel" class="form-control" ng-model="form.icePhone" required>
+            <label>緊急連絡人電話</label>
+        </div>
+
+        <!-- 送出 -->
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary w-100">
+                立即註冊學員帳號
+            </button>
+        </div>
+
+        <!-- 條款 -->
+        <div class="text-center mt-3">
+            <p class="text-muted small">
+                註冊即代表您同意本站之
+                <a href="#" class="text-primary fw-bold text-decoration-none">服務條款</a>
+            </p>
+        </div>
+
+    </form>
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init();
+</script>
+
+</body>
+</html>
