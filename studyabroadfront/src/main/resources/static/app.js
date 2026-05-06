@@ -10,10 +10,10 @@ app.config(function($httpProvider) {
 
 // 3. 建立 CourseController
 app.controller('CourseController', function($scope, $http) {
-    
+
 	// ⭐ 加這行：從 localStorage 取回登入狀態
 	$scope.user = JSON.parse(localStorage.getItem('user'));
-	
+
 
 	// 登出
 	$scope.logout = function() {
@@ -21,15 +21,15 @@ app.controller('CourseController', function($scope, $http) {
 		//$scope.user = null;
 	    window.location.href = "index.html";
 	};
-	
+
     // 初始化變數
-    $scope.courses = [];          
+    $scope.courses = [];
     $scope.selectedCountryId = ""; // 預設留空，讓它一開始顯示全部
     $scope.searchText = "";
 
     // 定義抓取課程資料的方法
     $scope.getCourses = function() {
-        
+
         // 🌟 注意：這裡我們改呼叫 /api/courses/list (抓取全部上架課程)
         // 因為我們之前在後端是寫這個 API，然後用前端來做篩選，這樣速度最快！
         $http.get('http://localhost:8080/api/courses/list')
@@ -48,7 +48,7 @@ app.controller('CourseController', function($scope, $http) {
                         return c.isActive === true;
                     });
                 }
-                
+
                 console.log("成功取得並過濾資料：", $scope.courses);
             })
             .catch(function(error) {

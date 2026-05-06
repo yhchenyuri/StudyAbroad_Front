@@ -1,6 +1,7 @@
 package com.example.front.model;
 
 import java.sql.Timestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,25 +15,30 @@ import lombok.Data;
 @Data
 public class Appointments {
 
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	    @Column(nullable = false, unique = true, length = 36)
-	    private String uuid;
+    @Column(nullable = false, unique = true, length = 36)
+    private String uuid;
 
-	    private String name;
-	    private String phone;
-	    private String email;
-	    
-	    @Column(name = "country_id")
-	    private Integer countryId;
+    @Column(length = 100)
+    private String name;
 
-	    @Column(columnDefinition = "TEXT")
-	    private String requirement;
-	    
-	    @Column(name = "created_at", insertable = false, updatable = false)
-	    private Timestamp createdAt;
+    @Column(length = 20)
+    private String phone;
 
-	}
+    @Column(length = 255)
+    private String email;
+
+    @Column(name = "country_id")
+    private Integer countryId;
+
+    @Column(columnDefinition = "TEXT")
+    private String requirement;
+
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private Timestamp createdAt;
+
+}
 

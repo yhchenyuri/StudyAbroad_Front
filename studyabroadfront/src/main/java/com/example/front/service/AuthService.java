@@ -17,8 +17,7 @@ public class AuthService {
 
     public Student login(String email, String password) {
 
-        Student student = studentRepository.findByEmail(email)
-                .orElse(null);
+        Student student = studentRepository.findByEmail(email);
 
         if (student == null) {
             throw new IllegalArgumentException("EMAIL_NOT_FOUND");
