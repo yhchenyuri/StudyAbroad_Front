@@ -1,163 +1,188 @@
 <!DOCTYPE html>
-<!--<html lang="zh-TW">-->
-<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-TW" ng-app="studyApp">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人管理中心 | StudyAbroad Global</title>
+
+    <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" th:href="@{/student_dashboard.css}">
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- JS -->
+    <script src="student_dashboard.js"></script>
 </head>
 
-<body>
+<body ng-controller="StudentController">
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fa-solid fa-graduation-cap me-2 text-warning"></i>STUDYABROAD
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="fa-solid fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
-                    <li class="nav-item"><a class="nav-link" href="courses.html">精選課程</a></li>
-                    <li class="nav-item dropdown ms-lg-3">
-                        <a class="nav-link dropdown-toggle btn-user-profile px-3" href="#" id="userDropdown"
-                            role="button" data-bs-toggle="dropdown">
-                            <span th:text="${student.nameZh}"></span>
-<!--                            <i class="fa-solid fa-circle-user me-2"></i>黃詩雲 Sharon-->
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-gear me-2"></i>帳號設定</a>
-                            </li>
-                            <li><a class="dropdown-item" href="#"><i
-                                        class="fa-solid fa-file-invoice-dollar me-2"></i>我的訂單</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-danger" href="index.html"><i
-                                        class="fa-solid fa-right-from-bracket me-2"></i>登出</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+            <i class="fa-solid fa-graduation-cap me-2 text-warning"></i>STUDYABROAD
+        </a>
 
-    <main class="container mb-5" style="padding-top: 120px;">
-        <div class="row g-4">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="index.html">回首頁</a>
 
-            <div class="col-lg-4" data-aos="fade-right">
-                <div class="card profile-card border-0 shadow-sm p-4 h-100">
-                    <div class="text-center mb-4">
-                        <div class="avatar-placeholder mx-auto mb-3">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-<!--                        <h4 class="fw-bold mb-1">黃詩雲</h4>-->
-                        <h4 class="fw-bold mb-1" th:text="${student.nameZh}"></h4>
-                        <span class="badge bg-primary-subtle text-primary rounded-pill px-3">正式學員</span>
-                    </div>
-                    <hr>
-                    <div class="profile-info mt-3">
-                        <div class="mb-3">
-                            <label class="text-muted small d-block">護照號碼 Passport No.</label>
-                            <span class="fw-bold" th:text="${student.passportNumber}"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label class="text-muted small d-block">電子郵件 Email</label>
-                            <span class="fw-bold" th:text="${student.email}"></span>
+            </li>
 
-                        </div>
-                        <div class="mb-3">
-                            <label class="text-muted small d-block">註冊日期 Registered On</label>
-                            <span class="fw-bold" th:text="${#temporals.format(student.createdAt, 'yyyy/MM/dd HH:mm')}"></span>
+            <li class="nav-item ">
+                <a class="nav-link text-white" ng-click="logout()">
+                    {{student.nameZh}}
+                </a>
+<!--                <ul class="dropdown-menu">-->
+<!--                    <li><a class="dropdown-item">帳號設定</a></li>-->
+<!--                    <li><a class="dropdown-item">我的訂單</a></li>-->
+<!--                    <li><hr class="dropdown-divider"></li>-->
+<!--                    <li><a class="dropdown-item text-danger">登出</a></li>-->
+<!--                </ul>-->
 
-                        </div>
-                    </div>
-<!--                    <button class="btn btn-outline-primary w-100 rounded-pill mt-auto">編輯個人資料</button>-->
-                </div>
-            </div>
+             </li>
+        </ul>
 
-            <div class="col-lg-8" data-aos="fade-left">
-                <div class="row g-3 mb-4">
-                    <div class="col-md-6">
-                        <div class="card stat-box border-0 shadow-sm p-3 text-center">
-                            <h6 class="text-muted small mb-1">已購買課程</h6>
-                            <h3 class="fw-bold text-primary mb-0"><span th:text="${courseOrdersList.size()}"></span></h3>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card stat-box border-0 shadow-sm p-3 text-center">
-                            <h6 class="text-muted small mb-1">預約諮詢</h6>
-                            <h3 class="fw-bold text-accent mb-0"><span th:text="${appointmentsList.size()}"></span></h3>
-                        </div>
-                    </div>
-                </div>
+    </div>
+</nav>
 
-                <div class="card border-0 shadow-sm p-4">
-                    <h5 class="fw-bold mb-4"><i class="fa-solid fa-book-bookmark me-2 text-primary"></i>我的遊學課程</h5>
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead class="table-light">
-                                <tr class="small text-muted text-uppercase">
-                                    <th>課程名稱</th>
-                                    <th>遊學時間 (Duration)</th>
-                                    <th>狀態</th>
-<!--                                    <th>操作</th>-->
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="courseOrder : ${courseOrdersList}">
-                                <td>
-                                    <div class="fw-bold" th:text="${courseOrder.courseName}"></div>
-<!--                                    <small class="text-muted">UK-LSE-2026</small>-->
-                                </td>
-                                <td>
-                                    <span class="text-dark"
-                                          th:text="${#temporals.format(courseOrder.courseStartDate, 'yyyy/MM/dd')}
-                                          + ' - ' +
-                                          ${#temporals.format(courseOrder.courseEndDate, 'yyyy/MM/dd')}">
-                                    </span>
-                                    <br>
-                                    <small class="text-muted"
-                                           th:text="${courseOrder.durationDays + '天'}">
-                                    </small>
-                                </td>
-                                <td>
-                                    <span th:class="'badge px-3 bg-' + ${courseOrder.orderStatus.color} + '-subtle text-' + ${courseOrder.orderStatus.color} + ' border border-' + ${courseOrder.orderStatus.color}"
-                                          th:text="${courseOrder.orderStatus.label}">
-                                    </span>
-                                </td>
-<!--                                <td><a href="#" class="btn btn-sm btn-light rounded-pill">查看行前</a></td>-->
-                            </tr>
+<!-- MAIN -->
+<main class="container" style="padding-top:120px;">
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <!-- loading -->
+    <div ng-if="loading" class="text-center">
+        <div class="spinner-border text-primary"></div>
+    </div>
 
-                <div class="alert alert-primary border-0 rounded-4 mt-4 p-4 d-flex align-items-center" role="alert">
-                    <i class="fa-solid fa-circle-info fs-3 me-3"></i>
-                    <div>
-                        <h6 class="alert-heading fw-bold mb-1">行前小提醒</h6>
-                        <p class="mb-0 small">您的英國夏令營簽證文件尚缺「財力證明」，請於 2026/05/01 前補件。</p>
-                    </div>
-                </div>
+    <!-- error -->
+    <div ng-if="error" class="alert alert-danger">
+        {{error}}
+    </div>
+
+    <div class="row g-4" ng-if="!loading && !error">
+
+        <!-- LEFT -->
+        <div class="col-lg-4">
+
+            <div class="card shadow-sm p-4 text-center">
+
+                <i class="fa-solid fa-user-graduate fs-1 mb-3"></i>
+
+                <h4>{{student.nameZh}}</h4>
+                <span class="badge bg-primary">正式學員</span>
+
+                <hr>
+
+                <p>
+                    <small class="text-muted">護照</small><br>
+                    <b>{{student.passportNumber}}</b>
+                </p>
+
+                <p>
+                    <small class="text-muted">Email</small><br>
+                    <b>{{student.email}}</b>
+                </p>
+
+                <p>
+                    <small class="text-muted">註冊時間</small><br>
+                    <b>{{student.createdAt | date:'yyyy/MM/dd HH:mm'}}</b>
+                </p>
+
             </div>
 
         </div>
-    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true });
-    </script>
+        <!-- RIGHT -->
+        <div class="col-lg-8">
+
+            <!-- STATS -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-6">
+                    <div class="card p-3 text-center">
+                        <h6>已購課程</h6>
+                        <h3 class="text-primary">{{courseOrders.length}}</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card p-3 text-center">
+                        <h6>預約諮詢</h6>
+                        <h3 class="text-success">{{appointments.length}}</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COURSE TABLE -->
+            <div class="card p-4">
+
+                <h5 class="fw-bold mb-3">
+                    <i class="fa-solid fa-book me-2"></i>我的課程
+                </h5>
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle">
+
+                        <thead>
+                        <tr>
+                            <th>課程</th>
+                            <th>時間</th>
+                            <th>狀態</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr ng-repeat="c in courseOrders">
+
+                            <td>
+                                <b>{{c.courseName}}</b>
+                            </td>
+
+                            <td>
+                                {{c.startDate | date:'yyyy/MM/dd'}}
+                                -
+                                {{c.endDate | date:'yyyy/MM/dd'}}
+                                <br>
+                                <small>{{c.durationDays}} 天</small>
+                            </td>
+
+                            <td>
+                                <span class="badge"
+                                      ng-class="getStatusClass(c.status)">
+                                    {{c.status}}
+                                </span>
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init();
+</script>
+
 </body>
-
 </html>

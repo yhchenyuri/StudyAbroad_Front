@@ -19,23 +19,30 @@ public class Orders {
     @Column(columnDefinition = "char(36)", nullable = false, unique = true)
     private String uuid;
 
-    @Column(name = "student_id")
-    private Integer studentId;
+    //    @Column(name = "student_id")
+//    private Integer studentId;
+//    @Column(name = "course_id")
+//    private Integer courseId;
 
-    @Column(name = "course_id")
-    private Integer courseId;
+    @ManyToOne
+    @JoinColumn(name = "courses_id", insertable = false, updatable = false)
+    private Courses course;
 
-    @Column(name = "employee_id")
-    private Integer employeeId;
+    @ManyToOne
+    @JoinColumn(name = "students_id", insertable = false, updatable = false)
+    private Student student;
 
-    @Column(name = "original_price", precision = 10, scale = 2)
-    private BigDecimal originalPrice;
+    @Column(name = "employees_id")
+    private Integer employeesId;
+
+    @Column(name = "agency_fee", precision = 10, scale = 2)
+    private BigDecimal agencyFee;
 
     @Column(name = "discount_rate", precision = 5, scale = 2)
     private BigDecimal discountRate;
 
-    @Column(name = "final_price", precision = 10, scale = 2)
-    private BigDecimal finalPrice;
+    @Column(name = "final_fee", precision = 10, scale = 2)
+    private BigDecimal finalFee;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status")

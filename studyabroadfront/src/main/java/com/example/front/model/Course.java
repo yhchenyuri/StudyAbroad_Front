@@ -19,7 +19,7 @@ import lombok.Data;
 
 public class Course implements Serializable{
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -55,3 +55,4 @@ public class Course implements Serializable{
     private byte[]image;
 
 }
+

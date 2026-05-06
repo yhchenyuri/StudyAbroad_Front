@@ -21,8 +21,8 @@ public class Courses {
     @Column(precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column(name = "max_students")
-    private Short maxStudents;
+//    @Column(name = "max_students")
+//    private Short maxStudents;
 
     @Column(name = "current_enrollment")
     private Short currentEnrollment;

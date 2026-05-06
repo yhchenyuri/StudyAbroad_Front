@@ -39,7 +39,7 @@ public class SecurityConfig {
 	                "/api/auth/**",
 	                "/index.html",
 	                "/**/*.js",
-	                "/**/*.css"
+	                "/**/*.css","/register", "register.css"
 	            ).permitAll()
 
 	            // ⭐ API 放行
@@ -48,6 +48,10 @@ public class SecurityConfig {
 	            .requestMatchers("/api/auth/me").permitAll()
 	            .requestMatchers("/api/public/**").permitAll()
 	            .requestMatchers("/api/appointments/**").permitAll()
+	            .requestMatchers("/api/password/**").permitAll()
+	            .requestMatchers("/api/password/forgot", "/api/password/reset").permitAll() // 允許匿名存取
+	            .requestMatchers("/reset-password.html").permitAll() // 允許存取前端頁面
+	            .requestMatchers("/forget-password.html").permitAll() // 允許存取前端頁面
 	            .anyRequest().permitAll()
 
 	            // ⭐ 其他都要登入

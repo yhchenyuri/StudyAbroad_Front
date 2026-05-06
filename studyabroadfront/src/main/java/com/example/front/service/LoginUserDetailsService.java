@@ -20,8 +20,10 @@ public class LoginUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Student student = repo.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        Student student = repo.findByEmail(email);
+        if (student == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
 
         return new org.springframework.security.core.userdetails.User(
                 student.getEmail(),
